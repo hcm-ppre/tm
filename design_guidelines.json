@@ -1,0 +1,105 @@
+{
+  "project_context": {
+    "app_type": "dashboard",
+    "theme": "light",
+    "emotional_archetype": "Swiss & High-Contrast (Authority, Clarity, Truth)",
+    "description": "Enterprise Talent Management System for PT PP Presisi Tbk. Needs to handle high-density data, CRUD operations for employees and movements, and complex demographic analytics.",
+    "target_audience": "HR Admins, Managers, and Corporate Executives"
+  },
+  "typography": {
+    "strategy": "The 'Swiss Brutalist' Corporate approach: structural, legible, and authoritative.",
+    "heading_font": "Chivo",
+    "body_font": "Karla",
+    "rules": {
+      "h1": "text-4xl tracking-tight font-black",
+      "h2": "text-2xl tracking-tight font-bold",
+      "h3": "text-xl tracking-tight font-semibold",
+      "body": "text-sm leading-relaxed",
+      "labels": "text-xs font-bold uppercase tracking-[0.2em] text-slate-500"
+    },
+    "banned_fonts": ["Inter", "Roboto", "Open Sans", "Lato"],
+    "font_installation_instructions": "Import 'Chivo' and 'Karla' from Google Fonts and configure them in tailwind.config.js."
+  },
+  "colors": {
+    "background": "#F8FAFC",
+    "surface": "#FFFFFF",
+    "primary": "#0F4C81",
+    "primary_hover": "#0C3C66",
+    "accent": "#FF5A00",
+    "text_main": "#0F172A",
+    "text_muted": "#64748B",
+    "border": "#E2E8F0",
+    "sidebar_bg": "#0B1120",
+    "sidebar_text": "#F8FAFC",
+    "success": "#10B981",
+    "warning": "#F59E0B",
+    "danger": "#EF4444",
+    "forbidden_colors": ["#1B93A4", "#7351B7"],
+    "rules": [
+      "Use 'Grid Borders' strategy: rely on 1px borders (#E2E8F0) instead of shadows to separate content.",
+      "Never use pure black or pure gray. Always tint grays with blue (e.g., slate).",
+      "Use High-Contrast Text: text-slate-900 for main text, text-slate-500 for secondary.",
+      "Hover states must be explicitly defined and accessible."
+    ]
+  },
+  "layouts_and_grids": {
+    "spacing_system": "Generous Tailwind padding (p-6, p-8) around main sections, but tight spacing (p-3, p-4) inside high-density data tables and cards.",
+    "dashboard_grid": "MODE B: High Density Grid. grid-cols-1 md:grid-cols-2 lg:grid-cols-4 with gap-6. Every pixel utilized.",
+    "navigation": "Fixed left sidebar (w-64) with dark theme (#0B1120) to contrast the light content area. Top header with breadcrumbs and user profile.",
+    "cards": "Flat background, 1px subtle border, NO shadow. Very sharp, 4px border-radius (rounded-sm or rounded-md max).",
+    "tables": "High density, text-sm, 1px bottom borders on rows. No alternating row colors, just clean white with hover:bg-slate-50.",
+    "modals": "Use Shadcn 'Sheet' (Slide-over drawer) from the right for 'Talent Profile' and 'Talent Movement Form' to maintain context of the underlying list."
+  },
+  "components": {
+    "strategy": "Use pure HTML/Tailwind for structural page layouts. Use Shadcn UI for all interactive logic.",
+    "forms": "Strictly Shadcn Form + React Hook Form + Zod. Use Shadcn Select, Input, DatePicker.",
+    "tables": "Shadcn Table. Ensure horizontal scrolling for many columns (NRP, Name, Position, Work Unit, etc.).",
+    "charts": "Shadcn Charts / Recharts. Bar charts for Education Level, Pie/Donut for Employment Status, Line chart for Movement Trends.",
+    "buttons": "Sharp edges (rounded-sm). Primary buttons use #0F4C81, secondary buttons use border with transparent bg.",
+    "tabs": "Use Shadcn Tabs for navigating within the Talent Profile (e.g., Personal Info vs Movement History)."
+  },
+  "visual_enhancers": {
+    "surface_strategy": "GRID BORDERS (The Technical Look). Expose the skeleton, make the grid visible. Container uses border-collapse style layout if possible, or just strict borders.",
+    "icons": "Phosphor Icons (@phosphor-icons/react) for a technical, crisp, dashboard feel.",
+    "motion": "Minimalist. Hover states on rows, subtle slide-in for drawers (Sheet). Recharts drawing animations."
+  },
+  "media": {
+    "image_urls": {
+      "login_background": {
+        "url": "https://images.unsplash.com/photo-1768578717759-4f4cc8e58310?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzB8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBjb25zdHJ1Y3Rpb24lMjBzaXRlJTIwc3Vuc2V0fGVufDB8fHx8MTc4NjQ0NDMyOXww&ixlib=rb-4.1.0&q=85",
+        "description": "Modern buildings under construction at sunset",
+        "usage": "Use as the hero image covering the right side of the split-screen login page. Overlay with bg-slate-900/40."
+      },
+      "heavy_equipment_accent": {
+        "url": "https://images.unsplash.com/photo-1503708928676-1cb796a0891e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTB8MHwxfHNlYXJjaHwyfHxoZWF2eSUyMGNvbnN0cnVjdGlvbiUyMGVxdWlwbWVudCUyMHNpdGV8ZW58MHx8fHwxNzg2NDQ0MzM5fDA&ixlib=rb-4.1.0&q=85",
+        "description": "yellow Caterpillar excavator",
+        "usage": "Optional: Use for empty states in the dashboard (e.g., 'No data found' card) with a very low opacity or greyscale filter."
+      }
+    }
+  },
+  "accessibility": {
+    "contrast": "Ensure minimum 4.5:1 for normal text. Use APCA standards. Text on primary blue must be white.",
+    "data_testid": "MANDATORY. Add data-testid to all buttons, inputs, links, and table rows (e.g., data-testid='login-submit', data-testid='talent-row-123').",
+    "focus_states": "All inputs and buttons must have focus:ring-2 focus:ring-primary focus:outline-none."
+  },
+  "instructions_to_main_agent": [
+    "Install required dependencies: yarn add @phosphor-icons/react recharts sonner date-fns react-hook-form @hookform/resolvers zod",
+    "Initialize Shadcn UI and add: button, input, select, table, sheet, dialog, form, label, card, tabs",
+    "Implement a persistent Sidebar Layout where the sidebar contains links to Dashboard, Talent List, Talent Movement, and Master Unit Kerja.",
+    "Build the Login page with a split layout: left side white with corporate login form, right side image overlay.",
+    "The Dashboard must have at least 4 Recharts components visualizing Headcount, Status, Education, and Movement Trends.",
+    "The Talent List must be a dense table. Clicking a row should open a right-side Sheet (Drawer) containing the 'Employee Full Profile' and their 'Movement History'.",
+    "The Talent Movement interface should be a robust form inside a Dialog or Card, requiring fields like SPT Number, Effective Date, Type (Promosi/Mutasi/Demosi), New Position, New Work Unit.",
+    "Implement generic Shadcn Toasts (Sonner) for all CRUD success/error states.",
+    "Apply the GRID BORDERS strategy: don't use heavy shadows for cards, use clean 1px borders (border-slate-200) with square or slightly rounded corners (rounded-sm) to fit the technical construction industry vibe."
+  ],
+  "universal_guidelines_for_main_agent": [
+    "You tend to converge toward generic, 'on distribution' outputs. Avoid this.",
+    "Create depth through layered design elements, but stick to the Grid Borders strategy.",
+    "Do NOT apply universal transition (transition: all). Target specific properties.",
+    "Do NOT center align the app container (.App { text-align: center; }).",
+    "Never use AI assistant Emoji characters (🤖🧠💭) for icons. Use the specified Phosphor Icons.",
+    "Use 2-3x more spacing than feels comfortable for main layout padding, but keep tables dense.",
+    "Add hover states to every interactive element."
+  ]
+}
